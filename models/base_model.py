@@ -33,3 +33,4 @@ class BaseModel:
         """
           To Dict method
         """
+        return {'id': self.id}
