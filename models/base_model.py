@@ -33,4 +33,4 @@ class BaseModel:
         """
           To Dict method
         """
-        return {'id': self.id}
+        return {'id': self.id, 'created_at': self.created_at.isoformat(), 'updated_at': self.updated_at.isoformat(), '__class__': self.__class__.__name__}
