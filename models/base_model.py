@@ -33,4 +33,8 @@ class BaseModel:
         """
           To Dict method
         """
-        return {'id': self.id, 'created_at': self.created_at.isoformat(), 'updated_at': self.updated_at.isoformat(), '__class__': self.__class__.__name__}
+        dict = self.__dict__
+        dict['created_at'] = self.created_at.isoformat()
+        dict['updated_at'] = self.updated_at.isoformat()
+        dict.update({'__class__': self.__class__.__name__})
+        return dict
