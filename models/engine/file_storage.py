@@ -9,8 +9,8 @@ class FileStorage:
     """
       FileStorage Class
     """
-    __file_path = ""
-    __objects = []
+    __file_path = "file.json"
+    __objects = {}
 
     def all(self):
         """
@@ -28,12 +28,13 @@ class FileStorage:
         """
           Serialize objects to JSON file
         """
-        with open(self.__file_path, w, encoding='uft-8') as file:
-            JSON.dump(self.__objects, file)
+        with open(FileStorage.__file_path, w, encoding='uft-8') as file:
+            JSON.dump(FileStorage.__objects, file)
 
     def reload(self):
         """
           Deserialize JSON file to objects
         """
-        with open(self.__file_path, r, encoding='utf-8') as file:
-            JSON.load(self.__objects, file)
+        if FileStorage.__file_path != "":
+            with open(FileStorage.__file_path, r, encoding='utf-8') as file:
+                FilesStorage.__objects = JSON.load(file)
