@@ -2,8 +2,8 @@
 """
   File Storage Module
 """
-import JSON
-
+import json
+import os
 
 class FileStorage:
     """
@@ -22,19 +22,21 @@ class FileStorage:
         """
           Add obj to objects
         """
-        FileStorage.__objects.update({f"{obj.__class__.__name__}.{obj.id}": obj})
+        dico = {f"{obj.__class__.__name__}.{obj.id}": obj.__dict__}
+        print("Adding", dico)
+        FileStorage.__objects.update({f"{obj.__class__.__name__}.{obj.id}": obj.to_dict})
 
     def save(self):
         """
           Serialize objects to JSON file
         """
-        with open(FileStorage.__file_path, w, encoding='uft-8') as file:
-            JSON.dump(FileStorage.__objects, file)
+        with open(FileStorage.__file_path, 'w', encoding='utf-8') as file:
+            json.dump(self.__objects, file)
 
     def reload(self):
         """
           Deserialize JSON file to objects
         """
-        if FileStorage.__file_path != "":
-            with open(FileStorage.__file_path, r, encoding='utf-8') as file:
-                FilesStorage.__objects = JSON.load(file)
+        if os.path.exists(FileStorage.__file_path):
+            with open(FileStorage.__file_path, 'r', encoding='utf-8') as file:
+                FileStorage.__objects = json.load(file)
