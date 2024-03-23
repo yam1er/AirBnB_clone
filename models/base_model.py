@@ -7,21 +7,19 @@ import uuid
 from models import storage
 
 class BaseModel:
-    """
-      BaseModel Class
+    """BaseModel Class
     """
     def __init__(self, *args, **kwargs):
         """
           Instance Creation Method
         """
-
         if len(kwargs):
             iso_format = "%Y-%m-%dT%H:%M:%S.%f"
             for key, value in kwargs.items():
                 if key in ["created_at", "updated_at"]:
-                    self.[key] = datetime.strptime(value, iso_format)
-                elif key != __class__:
-                    self.[key] = value
+                    self.key = datetime.strptime(value, iso_format)
+                elif key != "__class__":
+                    self.key = value
 
         else:
             self.id = str(uuid.uuid4())
@@ -30,8 +28,8 @@ class BaseModel:
             storage.new(self)
         
     def __str__(self):
-        """
-          __str__ method
+
+        """__str__ method
         """
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
