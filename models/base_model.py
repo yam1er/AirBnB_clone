@@ -6,6 +6,7 @@ import datetime
 import uuid
 from models import storage
 
+
 class BaseModel:
     """
       BaseModel Class
@@ -17,19 +18,21 @@ class BaseModel:
         if len(kwargs):
             iso_format = "%Y-%m-%dT%H:%M:%S.%f"
             for key, value in kwargs.items():
+                print(key, value)
                 if key in ["created_at", "updated_at"]:
-                    self.key = datetime.strptime(value, iso_format)
+                    self.__dict__[key] = /
+                    datetime.datetime.strptime(value, iso_format)
                 elif key != "__class__":
-                    self.key = value
+                    self.__dict__[key] = value
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.datetime.now()
             self.updated_at = datetime.datetime.now()
-            storage.new(self.to_dict())
-        
-    def __str__(self):
+            storage.new(self)
 
-        """__str__ method
+    def __str__(self):
+        """
+          __str__ method
         """
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
@@ -37,7 +40,7 @@ class BaseModel:
         """
           Save Updates
         """
-        self.updated_at = datetime.datetime.now().isoformat()
+        self.updated_at = datetime.datetime.now()
         storage.save()
 
     def to_dict(self):

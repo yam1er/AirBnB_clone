@@ -5,6 +5,7 @@
 import json
 import os
 
+
 class FileStorage:
     """
       FileStorage Class
@@ -22,8 +23,9 @@ class FileStorage:
         """
           Add obj to objects
         """
-        key = obj["__class__"] + "." + obj["id"]
-        FileStorage.__objects.update({key: obj})
+        objt = obj.to_dict()
+        key = objt["__class__"] + "." + objt["id"]
+        FileStorage.__objects.update({key: objt})
 
     def save(self):
         """
