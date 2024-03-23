@@ -28,8 +28,8 @@ class BaseModel:
             storage.new(self.to_dict())
         
     def __str__(self):
-        """
-          __str__ method
+
+        """__str__ method
         """
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
