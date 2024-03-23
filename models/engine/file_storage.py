@@ -23,9 +23,8 @@ class FileStorage:
         """
           Add obj to objects
         """
-        objt = obj.to_dict()
-        key = objt["__class__"] + "." + objt["id"]
-        FileStorage.__objects.update({key: objt})
+        key = obj["__class__"] + "." + obj["id"]
+        self.__objects.update({key: obj})
 
     def save(self):
         """

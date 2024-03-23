@@ -2,7 +2,7 @@
 """
   BaseModel Module
 """
-import datetime
+from datetime import datetime
 import uuid
 from models import storage
 
@@ -20,15 +20,14 @@ class BaseModel:
             for key, value in kwargs.items():
                 print(key, value)
                 if key in ["created_at", "updated_at"]:
-                    self.__dict__[key] = /
-                    datetime.datetime.strptime(value, iso_format)
+                    self.__dict__[key] = datetime.strptime(value, iso_format)
                 elif key != "__class__":
                     self.__dict__[key] = value
         else:
             self.id = str(uuid.uuid4())
-            self.created_at = datetime.datetime.now()
-            self.updated_at = datetime.datetime.now()
-            storage.new(self)
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
+            storage.new(self.to_dict())
 
     def __str__(self):
         """
@@ -40,7 +39,7 @@ class BaseModel:
         """
           Save Updates
         """
-        self.updated_at = datetime.datetime.now()
+        self.updated_at = datetime.now()
         storage.save()
 
     def to_dict(self):
