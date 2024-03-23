@@ -22,9 +22,8 @@ class FileStorage:
         """
           Add obj to objects
         """
-        dico = {f"{obj.__class__.__name__}.{obj.id}": obj.__dict__}
-        print("Adding", dico)
-        FileStorage.__objects.update({f"{obj.__class__.__name__}.{obj.id}": obj.to_dict})
+        key = obj["__class__"] + "." + obj["id"]
+        FileStorage.__objects.update({key: obj})
 
     def save(self):
         """
