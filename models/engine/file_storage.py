@@ -41,3 +41,10 @@ class FileStorage:
         if os.path.exists(self.__file_path):
             with open(self.__file_path, 'r', encoding='utf-8') as file:
                 self.__objects = json.load(file)
+
+    def delete(self, key):
+        """
+          Remove an object from __objects and save
+        """
+        del self.__objects[key]
+        self.save()
