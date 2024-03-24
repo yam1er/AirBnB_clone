@@ -17,26 +17,27 @@ class FileStorage:
         """
           Returns dictionary of all object
         """
-        return FileStorage.__objects
+        return self.__objects
 
     def new(self, obj):
         """
           Add obj to objects
         """
-        key = obj["__class__"] + "." + obj["id"]
-        self.__objects.update({key: obj})
+        ob = obj.to_dict()
+        key = ob["__class__"] + "." + ob["id"]
+        self.__objects[key] = ob
 
     def save(self):
         """
           Serialize objects to JSON file
         """
-        with open(FileStorage.__file_path, 'w', encoding='utf-8') as file:
+        with open(self.__file_path, 'w', encoding='utf-8') as file:
             json.dump(self.__objects, file)
 
     def reload(self):
         """
           Deserialize JSON file to objects
         """
-        if os.path.exists(FileStorage.__file_path):
-            with open(FileStorage.__file_path, 'r', encoding='utf-8') as file:
-                FileStorage.__objects = json.load(file)
+        if os.path.exists(self.__file_path):
+            with open(self.__file_path, 'r', encoding='utf-8') as file:
+                self.__objects = json.load(file)
