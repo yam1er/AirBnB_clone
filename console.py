@@ -5,6 +5,11 @@
 import cmd
 from models.base_model import BaseModel
 from models import storage
+from models.user import User
+from models.city import City
+from models.place import Place
+from models.amenity import Amenity
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
@@ -35,7 +40,8 @@ class HBNBCommand(cmd.Cmd):
         line = line.split(" ")
         if line[0] == "":
             print("** class name missing **")
-        elif line[0] not in ['BaseModel', 'User', 'State', 'City', 'Amenity', 'Place', 'Review']:
+        elif line[0] not in
+        ['BaseModel', 'User', 'State', 'City', 'Amenity', 'Place', 'Review']:
             print("** class doesn't exist **")
         else:
             if line[0] == 'BaseModel':
@@ -61,7 +67,8 @@ class HBNBCommand(cmd.Cmd):
         line = line.split(" ")
         if line[0] == "":
             print("** class name missing **")
-        elif line[0] not in ['BaseModel', 'User', 'State', 'City', 'Amenity', 'Place', 'Review']:
+        elif line[0] not in
+        ['BaseModel', 'User', 'State', 'City', 'Amenity', 'Place', 'Review']:
             print("** class doesn't exist **")
         elif (len(line) > 1 and line[1] == "") or len(line) == 1:
             print("** instance id missing **")
@@ -81,7 +88,8 @@ class HBNBCommand(cmd.Cmd):
             for key, value in storage.all().items():
                 all += [value]
             print(all)
-        elif line[0] in ['BaseModel', 'User', 'State', 'City', 'Amenity', 'Place', 'Review']:
+        elif line[0] in
+        ['BaseModel', 'User', 'State', 'City', 'Amenity', 'Place', 'Review']:
             all = []
             for key, value in storage.all().items():
                 keys = key.split(".")
@@ -97,7 +105,8 @@ class HBNBCommand(cmd.Cmd):
         line = line.split(" ")
         if line[0] == "":
             print("** class name missing **")
-        elif line[0] not in ['BaseModel', 'User', 'State', 'City', 'Amenity', 'Place', 'Review']:
+        elif line[0] not in
+        ['BaseModel', 'User', 'State', 'City', 'Amenity', 'Place', 'Review']:
             print("** class doesn't exist **")
         elif (len(line) > 1 and line[1] == "") or len(line) == 1:
             print("** instance id missing **")
@@ -114,7 +123,8 @@ class HBNBCommand(cmd.Cmd):
         line = line.split(" ")
         if line[0] == "":
             print("** class name missing **")
-        elif line[0] not in ['BaseModel', 'User', 'State', 'City', 'Amenity', 'Place', 'Review']:
+        elif line[0] not in
+        ['BaseModel', 'User', 'State', 'City', 'Amenity', 'Place', 'Review']:
             print("** class doesn't exist **")
         elif (len(line) > 1 and line[1] == "") or len(line) == 1:
             print("** instance id missing **")
