@@ -4,8 +4,11 @@
 """
 from models.base_module import BaseModel
 
+
 class User (BaseModel):
+
     """
+
     class that represent a user
 
     Attributes;
