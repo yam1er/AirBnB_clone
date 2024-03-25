@@ -78,7 +78,20 @@ class HBNBCommand(cmd.Cmd):
             if key not in storage.all().keys():
                 print("** no instance found **")
             else:
-                obj = BaseModel(**storage.all()[key])
+                if line[0] == 'BaseModel':
+                    obj = BaseModel(**storage.all()[key])
+                elif line[0] == 'User':
+                    obj = User(**storage.all()[key])
+                elif line[0] == 'State':
+                    obj = State(**storage.all()[key])
+                elif line[0] == 'City':
+                    obj = City(**storage.all()[key])
+                elif line[0] == 'Amenity':
+                    obj = Amenity(**storage.all()[key])
+                elif line[0] == 'Place':
+                    obj = Place(**storage.all()[key])
+                elif line[0] == 'Review':
+                    obj = Review(**storage.all()[key])
                 print(obj)
 
     def do_all(self, line):
@@ -88,14 +101,42 @@ class HBNBCommand(cmd.Cmd):
         if line[0] == "":
             all = []
             for key, value in storage.all().items():
-                all += [value]
+                if value['__class__'] == 'BaseModel':
+                    rep = BaseModel(**storage.all()[key]).__str__()
+                elif value['__class__'] == 'User':
+                    rep = User(**storage.all()[key]).__str__()
+                elif value['__class__'] == 'State':
+                    rep = State(**storage.all()[key]).__str__()
+                elif value['__class__'] == 'City':
+                    rep = City(**storage.all()[key]).__str__()
+                elif value['__class__'] == 'Amenity':
+                    rep = Amenity(**storage.all()[key]).__str__()
+                elif value['__class__'] == 'Place':
+                    rep = Place(**storage.all()[key]).__str__()
+                elif value['__class__'] == 'Review':
+                    rep = Review(**storage.all()[key]).__str__()
+                all += [rep]
             print(all)
         elif line[0] in c:
             all = []
             for key, value in storage.all().items():
                 keys = key.split(".")
                 if keys[0] == line[0]:
-                    all += [value]
+                    if value['__class__'] == 'BaseModel':
+                        rep = BaseModel(**storage.all()[key]).__str__()
+                    elif value['__class__'] == 'User':
+                        rep = User(**storage.all()[key]).__str__()
+                    elif value['__class__'] == 'State':
+                        rep = State(**storage.all()[key]).__str__()
+                    elif value['__class__'] == 'City':
+                        rep = City(**storage.all()[key]).__str__()
+                    elif value['__class__'] == 'Amenity':
+                        rep = Amenity(**storage.all()[key]).__str__()
+                    elif value['__class__'] == 'Place':
+                        rep = Place(**storage.all()[key]).__str__()
+                    elif value['__class__'] == 'Review':
+                        rep = Review(**storage.all()[key]).__str__()
+                    all += [rep]
             print(all)
         else:
             print("** class doesn't exist **")
