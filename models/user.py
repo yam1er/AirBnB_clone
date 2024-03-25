@@ -2,7 +2,7 @@
 """
     Module for user class
 """
-from models.base_module import BaseModel
+from models.base_model import BaseModel
 
 
 class User (BaseModel):
