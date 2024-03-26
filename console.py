@@ -35,6 +35,9 @@ class HBNBCommand(cmd.Cmd):
         elif method == "show":
             args = args.strip('()').strip('""')
             self.do_show(cls + " " + args)
+        elif method == "destroy":
+            args = args.strip('()').strip('""')
+            self.do_destroy(cls + " " + args)
 
     def do_EOF(self, line):
         """End the program running
