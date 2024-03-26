@@ -22,6 +22,14 @@ class HBNBCommand(cmd.Cmd):
     """
     prompt = '(hbnb) '
 
+    def default(self, line):
+        """
+          Default command
+        """
+        cls, method = line.split(".")
+        if method == "all()":
+            self.do_all(cls)
+
     def do_EOF(self, line):
         """End the program running
         """

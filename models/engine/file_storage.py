@@ -24,7 +24,7 @@ class FileStorage:
           Add obj to objects
         """
         ob = obj.to_dict()
-        key = ob["__class__"] + "." + ob["id"]
+        key = obj.__class__.__name__ + "." + obj.id
         self.__objects[key] = ob
 
     def save(self):
@@ -32,6 +32,9 @@ class FileStorage:
           Serialize objects to JSON file
         """
         with open(self.__file_path, 'w', encoding='utf-8') as file:
+            """copy = self.__objects.copy()
+            for key, value in copy.items():
+                copy[key] = value.to_dict()"""
             json.dump(self.__objects, file)
 
     def reload(self):
@@ -40,6 +43,11 @@ class FileStorage:
         """
         if os.path.exists(self.__file_path):
             with open(self.__file_path, 'r', encoding='utf-8') as file:
+                """copy2 = json.load(file)
+                for key, value in copy2.items():
+                    class_name = value["__class__"]
+                    cls = globals()[class_name]
+                    obj = cls(**value)"""
                 self.__objects = json.load(file)
 
     def delete(self, key):
