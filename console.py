@@ -26,9 +26,15 @@ class HBNBCommand(cmd.Cmd):
         """
           Default command
         """
-        cls, method = line.split(".")
-        if method == "all()":
+        cls, call = line.split(".")
+        method, args = call.split("(")
+        if method == "all":
             self.do_all(cls)
+        elif method == "count":
+            self.do_all(cls)
+        elif method == "show":
+            args = args.strip('()').strip('""')
+            self.do_show(cls + " " + args)
 
     def do_EOF(self, line):
         """End the program running
