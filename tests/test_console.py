@@ -16,5 +16,6 @@ class TestConsole(unittest.TestCase):
         mod = BaseModel()
         self.assertEqual(True, 1)
 
+
 if __name__ == '__main__':
     unittest.main()
