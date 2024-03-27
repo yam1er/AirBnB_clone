@@ -38,10 +38,11 @@ class HBNBCommand(cmd.Cmd):
         elif method == "destroy":
             args = args.strip('()').strip('""')
             self.do_destroy(cls + " " + args)
-        """elif method == "update":
+        elif method == "update":
             args = args.strip('()').strip('""')
-
-            self.do_update(cls + " " + args)"""
+            args = args.replace(",", "")
+            args = args.replace('"', "")
+            self.do_update(cls + " " + args)
 
     def do_EOF(self, line):
         """End the program running
