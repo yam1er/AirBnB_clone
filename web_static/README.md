@@ -1,1 +1,1 @@
-The static web version of the AirBNB Clone project repo
+AirBnB clone - Web static
